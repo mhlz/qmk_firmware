@@ -73,7 +73,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   [PUNC] = LAYOUT_ergodox(
       // left hand
       TO(BASE),       KC_F1,          KC_F2,          KC_F3,          KC_F4,          KC_F5,            KC_F6,
-      KC_TRANSPARENT, KC_NO,          KC_LBRC,        KC_RBRC,        KC_PLUS,        KC_ASTR,          KC_TRNS,
+      KC_TRANSPARENT, KC_NO,          KC_LCBR,        KC_RCBR,        KC_PLUS,        KC_ASTR,          KC_TRNS,
       KC_TRANSPARENT, KC_AT,          KC_EQL,         KC_LPRN,        KC_RPRN,        KC_EXLM,
       KC_TRANSPARENT, KC_NO,          KC_CIRC,        KC_PERC,        KC_UNDS,        KC_NO,            KC_TRNS,
       KC_TRANSPARENT, KC_TRNS, KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT,
@@ -86,7 +86,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
       // right hand
       KC_F6,          KC_F7,          KC_F8,          KC_F9,            KC_F10,         KC_F11,             KC_F12,
-      KC_TRANSPARENT, KC_HASH,        KC_GRV,         KC_LCBR,          KC_RCBR,        KC_TILD,            KC_TRANSPARENT,
+      KC_TRANSPARENT, KC_HASH,        KC_GRV,         KC_LBRC,          KC_RBRC,        KC_TILD,            KC_TRANSPARENT,
                       KC_LEFT,        KC_DOWN,        KC_UP,            KC_RIGHT,       KC_DLR,             KC_TRANSPARENT,
       KC_TRANSPARENT, KC_NO,          KC_MINUS,       KC_AMPR,          KC_NO,          KC_NO,              KC_TRANSPARENT,
 

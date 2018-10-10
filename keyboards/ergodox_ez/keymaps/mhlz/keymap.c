@@ -26,7 +26,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
       LT(PUNC, KC_TAB),         KC_Q,           KC_W,           KC_E,           KC_R,           KC_T,             KC_TRANSPARENT,
       KC_LCTL,        KC_A,           KC_S,           KC_D,           KC_F,           KC_G,
       KC_LSFT,        KC_Z,           KC_X,           KC_C,           LT(PUNC, KC_V),           KC_B,             MO(PUNC),
-      KC_HYPR, HYPR(KC_P), KC_TRANSPARENT, KC_LALT,        KC_LGUI,
+      KC_HYPR, HYPR(KC_P), KC_RALT, KC_LALT,        KC_LGUI,
 
                                                 KC_MEDIA_PLAY_PAUSE,  KC_AUDIO_MUTE,
                                                                       KC_F14,

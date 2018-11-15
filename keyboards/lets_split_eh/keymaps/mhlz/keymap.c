@@ -112,16 +112,16 @@ uint32_t layer_state_set_user(uint32_t state) {
   int layer = biton32(state);
   switch(layer) {
     case BASE:
-      rgblight_sethsv_noeeprom_cyan();
+      rgblight_sethsv_cyan();
       break;
     case PUNC:
-      rgblight_sethsv_noeeprom_green();
+      rgblight_sethsv(120, 255, 255);
       break;
     case NUMB:
-      rgblight_sethsv_noeeprom_orange();
+      rgblight_sethsv_orange();
       break;
     case RSET:
-      rgblight_sethsv_noeeprom_red();
+      rgblight_sethsv_red();
       break;
   }
   return state;

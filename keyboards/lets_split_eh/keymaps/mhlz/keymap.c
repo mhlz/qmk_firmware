@@ -96,20 +96,16 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  * `-----------------------------------------------------------------------------------'
  */
 [RSET] = LAYOUT( \
-  TO(BASE),  _______, _______, _______, _______, _______, _______, _______, RGB_VAI, RGB_SAI, RGB_HUI, CALTDEL, \
+  TO(BASE),  _______, _______, _______, _______, _______, _______, _______, RGB_VAI, RGB_SAI, RGB_HUI, _______, \
   _______, _______, _______, _______, _______, _______, _______, KC_TRNS,  RGB_VAD, RGB_SAD, RGB_HUD, RGB_TOG, \
   _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, BL_STEP, \
   RESET, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, KC_TRNS    \
 ),
 };
 
-void persistent_default_layer_set(uint16_t default_layer) {
-  eeconfig_update_default_layer(default_layer);
-  default_layer_set(default_layer);
-}
-
-uint32_t layer_state_set_user(uint32_t state) {
-  int layer = biton32(state);
+void switch_rgb_light(int layer) {
+  RGB_DIRTY = true;
+  rgblight_enable();
   switch(layer) {
     case BASE:
       rgblight_sethsv_cyan();
@@ -124,6 +120,19 @@ uint32_t layer_state_set_user(uint32_t state) {
       rgblight_sethsv_red();
       break;
   }
-  return state;
+}
+
+void matrix_init_user (void) {
+  rgblight_enable();
+}
+
+int lastLayer = -1;
+
+void matrix_scan_user(void) {
+  int layer = biton32(layer_state);
+  if (layer != lastLayer) {
+    switch_rgb_light(layer);
+  }
+  layer = lastLayer;
 }
 

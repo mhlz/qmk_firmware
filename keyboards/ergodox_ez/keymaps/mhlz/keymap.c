@@ -47,7 +47,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   ),
   [GAME] = LAYOUT_ergodox(
       // left hand
-      KC_ESCAPE,      KC_KP_1,        KC_KP_2,        KC_KP_3,        KC_KP_4,        KC_KP_5,         KC_KP_6,
+      KC_NO,      KC_KP_1,        KC_KP_2,        KC_KP_3,        KC_KP_4,        KC_KP_5,         KC_KP_6,
       KC_TRANSPARENT, KC_Q,           KC_W,           KC_E,           KC_R,           KC_T,            KC_TRANSPARENT,
       KC_TRANSPARENT, CTL_T(KC_A),    ALT_T(KC_S),    GUI_T(KC_D),    SFT_T(KC_F),     ALL_T(KC_G),
       KC_TRANSPARENT, KC_Z,           KC_X,           KC_C,           KC_V,           KC_B,             KC_TRANSPARENT,
@@ -68,7 +68,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
                                                 KC_AUDIO_VOL_DOWN,    KC_AUDIO_VOL_UP,
                                                 KC_F15,
-                                                KC_DELETE,            LT(NUMB,KC_TAB),     LT(PUNC,KC_ENTER)
+                                                KC_ESCAPE,            LT(NUMB,KC_TAB),     LT(PUNC,KC_ENTER)
   ),
   [PUNC] = LAYOUT_ergodox(
       // left hand

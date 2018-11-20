@@ -13,20 +13,9 @@ extern keymap_config_t keymap_config;
 #define NUMB 2
 #define RSET 3
 
-enum custom_keycodes {
-  QWERTY = SAFE_RANGE,
-  LOWER,
-  RAISE,
-  ADJUST
-};
-
 // Fillers to make layering more clear
 #define _______ KC_TRNS
 #define XXXXXXX KC_NO
-
-// Defines for task manager and such
-#define CALTDEL LCTL(LALT(KC_DEL))
-#define TSKMGR LCTL(LSFT(KC_ESC))
 
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 

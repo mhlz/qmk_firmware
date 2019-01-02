@@ -22,7 +22,7 @@ enum custom_keycodes {
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   [BASE] = LAYOUT_ergodox(
       // left hand
-      KC_ESCAPE,      KC_KP_1,        KC_KP_2,        KC_KP_3,        KC_KP_4,        KC_KP_5,          KC_KP_6,
+      KC_ESCAPE,      KC_1,        KC_2,        KC_3,        KC_4,        KC_5,          KC_6,
       LT(PUNC, KC_TAB),         KC_Q,           KC_W,           KC_E,           KC_R,           KC_T,             KC_TRANSPARENT,
       KC_LCTL,        KC_A,           KC_S,           KC_D,           KC_F,           KC_G,
       KC_LSFT,        KC_Z,           KC_X,           KC_C,           LT(PUNC, KC_V),           KC_B,             MO(PUNC),
@@ -35,7 +35,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
 
       // right hand
-      KC_KP_6,        KC_KP_7,        KC_KP_8,        KC_KP_9,          KC_KP_0,        KC_TRANSPARENT,     KC_TRANSPARENT,
+      KC_6,        KC_7,        KC_8,        KC_9,          KC_0,        KC_MINUS,     KC_EQL,
       KC_TRANSPARENT, KC_Y,           KC_U,           KC_I,             KC_O,           KC_P,               LT(PUNC, KC_BSLASH),
                       KC_H,           KC_J,           KC_K,             KC_L,           KC_SCOLON,          LCTL_T(KC_QUOTE),
       MO(PUNC),       KC_N,           LT(PUNC, KC_M),           KC_COMMA,         KC_DOT,         KC_SLASH,           KC_LSFT,
@@ -44,31 +44,6 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
                                                 KC_AUDIO_VOL_DOWN,    KC_AUDIO_VOL_UP,
                                                 KC_F15,
                                                 MO(PUNC),            KC_DELETE,     KC_ENTER
-  ),
-  [GAME] = LAYOUT_ergodox(
-      // left hand
-      KC_NO,      KC_KP_1,        KC_KP_2,        KC_KP_3,        KC_KP_4,        KC_KP_5,         KC_KP_6,
-      KC_TRANSPARENT, KC_Q,           KC_W,           KC_E,           KC_R,           KC_T,            KC_TRANSPARENT,
-      KC_TRANSPARENT, CTL_T(KC_A),    ALT_T(KC_S),    GUI_T(KC_D),    SFT_T(KC_F),     ALL_T(KC_G),
-      KC_TRANSPARENT, KC_Z,           KC_X,           KC_C,           KC_V,           KC_B,             KC_TRANSPARENT,
-      KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT,
-
-                                                KC_MEDIA_PLAY_PAUSE,  KC_AUDIO_MUTE,
-                                                                      KC_F14,
-                                LT(PUNC,KC_SPACE), KC_BSPACE,            KC_DELETE,
-
-
-
-      // right hand
-      KC_KP_6,        KC_KP_7,        KC_KP_8,        KC_KP_9,          KC_KP_0,        KC_TRANSPARENT,     KC_TRANSPARENT,
-      KC_TRANSPARENT, KC_Y,           KC_U,           KC_I,             KC_O,           KC_P,               KC_TRANSPARENT,
-                      ALL_T(KC_H),    RSFT_T(KC_J),   RGUI_T(KC_K),     RALT_T(KC_L),   RCTL_T(KC_SCOLON),  KC_QUOTE,
-      KC_TRANSPARENT, KC_N,           KC_M,           KC_COMMA,         KC_DOT,         KC_SLASH,           KC_TRANSPARENT,
-                                      KC_TRANSPARENT, KC_TRANSPARENT,   KC_TRANSPARENT, KC_TRANSPARENT,     KC_TRANSPARENT,
-
-                                                KC_AUDIO_VOL_DOWN,    KC_AUDIO_VOL_UP,
-                                                KC_F15,
-                                                KC_ESCAPE,            LT(NUMB,KC_TAB),     LT(PUNC,KC_ENTER)
   ),
   [PUNC] = LAYOUT_ergodox(
       // left hand

@@ -93,26 +93,28 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 };
 
 void switch_rgb_light(int layer) {
+  rgblight_config_t rgblight_config;
+  rgblight_config.raw = eeconfig_read_rgblight();
+  uint8_t value = rgblight_config.val;
   RGB_DIRTY = true;
-  rgblight_enable();
   switch(layer) {
     case BASE:
-      rgblight_sethsv_cyan();
+      rgblight_sethsv(180, 255, value);
       break;
     case PUNC:
-      rgblight_sethsv(120, 255, 255);
+      rgblight_sethsv(120, 255, value);
       break;
     case NUMB:
-      rgblight_sethsv_orange();
+      rgblight_sethsv(39, 255, value);
       break;
     case RSET:
-      rgblight_sethsv_red();
+      rgblight_sethsv(0, 255, value);
       break;
   }
 }
 
 void matrix_init_user (void) {
-  rgblight_enable();
+  switch_rgb_light(BASE);
 }
 
 int lastLayer = -1;

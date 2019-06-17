@@ -38,7 +38,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
       KC_6,        KC_7,        KC_8,        KC_9,          KC_0,        KC_MINUS,     KC_EQL,
       KC_TRANSPARENT, KC_Y,           KC_U,           KC_I,             KC_O,           KC_P,               LT(PUNC, KC_BSLASH),
                       KC_H,           KC_J,           KC_K,             KC_L,           KC_SCOLON,          LCTL_T(KC_QUOTE),
-      MO(PUNC),       KC_N,           LT(PUNC, KC_M),           KC_COMMA,         KC_DOT,         KC_SLASH,           KC_LSFT,
+      MO(PUNC),       KC_N,           LT(PUNC, KC_M),           KC_COMMA,         KC_DOT,         KC_SLASH,           KC_RSFT,
                                       KC_LGUI,        KC_LALT,   KC_TRANSPARENT, KC_TRANSPARENT,     MO(NUMB),
 
                                                 KC_AUDIO_VOL_DOWN,    KC_AUDIO_VOL_UP,

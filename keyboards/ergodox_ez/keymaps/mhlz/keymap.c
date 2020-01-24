@@ -10,9 +10,10 @@ enum custom_keycodes {
 
 #define BASE 0
 #define GAME 1
-#define PUNC 2
-#define NUMB 3
-#define CNFG 4
+#define SIMU 2
+#define PUNC 3
+#define NUMB 4
+#define CNFG 5
 
 #define KC_VPNC LT(PUNC, KC_V)
 #define KC_MPNC LT(PUNC, KC_M)
@@ -72,6 +73,29 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
                                               _______,
                                               _______,  _______,  _______
   ),
+  [SIMU] = LAYOUT_ergodox(
+      // left hand
+      _______,  _______,  _______,  _______,  _______,  _______,  _______,
+      _______,  _______,  _______,  _______,  _______,  _______,  _______,
+      _______,  _______,  _______,  _______,  _______,  _______,
+      _______,  KC_Y,     _______,  _______,  KC_V,     _______,  _______,
+      _______,  _______,  _______,  _______,  _______,
+
+                                              _______,  _______,
+                                                                  _______,
+                                              _______,  _______,  _______,
+
+      // right hand
+      _______,  _______,  _______,  _______,  _______,  _______,  _______,
+      _______,  KC_Z,     _______,  _______,  _______,  _______,  _______,
+                _______,  KC_PENT,  KC_PGDN,  KC_END,   _______,  _______,
+      _______,  _______,  KC_M,     _______,  _______,  _______,  _______,
+                          _______,  _______,  _______,  _______,  _______,
+
+                                              _______,  _______,
+                                              _______,
+                                              _______,  _______,  _______
+  ),
   [PUNC] = LAYOUT_ergodox(
       // left hand
       KC_TOBA,  KC_F1,    KC_F2,    KC_F3,    KC_F4,    KC_F5,    KC_NO,
@@ -124,7 +148,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   ),
   [CNFG] = LAYOUT_ergodox(
       // left hand
-      KC_TOBA,  TO(GAME), _______,  _______,  _______,  _______,  _______,
+      KC_TOBA,  TO(GAME), TO(SIMU), _______,  _______,  _______,  _______,
       _______,  _______,  _______,  _______,  _______,  _______,  _______,
       _______,  _______,  _______,  _______,  _______,  _______,
       _______,  _______,  _______,  _______,  _______,  _______,  _______,
@@ -160,6 +184,7 @@ uint32_t layer_state_set_user(uint32_t state) {
     switch(layer) {
       case BASE:
         break;
+      case SIMU:
       case GAME:
         ergodox_right_led_1_on();
         break;

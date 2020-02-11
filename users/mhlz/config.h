@@ -1,0 +1,3 @@
+#define TAPPING_TERM 175
+#define COMBO_COUNT 2
+

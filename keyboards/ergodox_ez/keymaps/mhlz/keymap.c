@@ -1,3 +1,4 @@
+#include "mhlz.h"
 #include "ergodox_ez.h"
 
 enum custom_keycodes {
@@ -5,22 +6,7 @@ enum custom_keycodes {
   EPRM,
   VRSN,
   RGB_SLD,
-
 };
-
-#define BASE 0
-#define GAME 1
-#define SIMU 2
-#define PUNC 3
-#define NUMB 4
-#define CNFG 5
-
-#define KC_VPNC LT(PUNC, KC_V)
-#define KC_MPNC LT(PUNC, KC_M)
-#define KC_MOPC MO(PUNC)
-#define KC_MONU MO(NUMB)
-#define KC_HYP  HYPR(KC_P)
-#define KC_TOBA TO(BASE)
 
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   [BASE] = LAYOUT_ergodox(
@@ -28,7 +14,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
       KC_ESC,   KC_1,     KC_2,     KC_3,     KC_4,     KC_5,     KC_NO,
       KC_TAB,   KC_Q,     KC_W,     KC_E,     KC_R,     KC_T,     KC_NO,
       KC_LCTL,  KC_A,     KC_S,     KC_D,     KC_F,     KC_G,
-      KC_LSFT,  KC_Z,     KC_X,     KC_C,     KC_VPNC,  KC_B,     KC_MOPC,
+      KC_LSFT,  KC_Z,     KC_X,     KC_C,     KC_V,  KC_B,     KC_MOPC,
       KC_HYPR,  KC_HYP,   KC_RALT,  KC_LALT,  KC_LGUI,
 
                                               KC_MPLY,  KC_MUTE,
@@ -41,7 +27,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
       KC_NO,    KC_6,     KC_7,     KC_8,     KC_9,     KC_0,     KC_DLR,
       KC_NO,    KC_Y,     KC_U,     KC_I,     KC_O,     KC_P,     KC_BSLS,
                 KC_H,     KC_J,     KC_K,     KC_L,     KC_SCLN,  KC_QUOTE,
-      KC_MOPC,  KC_N,     KC_MPNC,  KC_COMM,  KC_DOT,   KC_SLASH, KC_RSFT,
+      KC_MOPC,  KC_N,     KC_M,  KC_COMM,  KC_DOT,   KC_SLASH, KC_RSFT,
                           KC_LGUI,  KC_LALT,  KC_NO,    KC_NO,    KC_MONU,
 
                                               KC_VOLD,  KC_VOLU,
@@ -52,7 +38,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
       // left hand
       _______,  _______,  _______,  _______,  _______,  _______,  _______,
       _______,  _______,  _______,  _______,  _______,  _______,  _______,
-      _______,  _______,  _______,  _______,  _______,  _______,
+      _______,  _______,  _______,  _______,  KC_F,     _______,
       _______,  _______,  _______,  _______,  KC_V,     _______,  _______,
       _______,  _______,  _______,  _______,  _______,
 
@@ -65,7 +51,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
       // right hand
       _______,  _______,  _______,  _______,  _______,  _______,  _______,
       _______,  _______,  _______,  _______,  _______,  _______,  _______,
-                _______,  _______,  _______,  _______,  _______,  _______,
+                _______,  KC_J,     _______,  _______,  _______,  _______,
       _______,  _______,  KC_M,     _______,  _______,  _______,  _______,
                           _______,  _______,  _______,  _______,  _______,
 
@@ -111,7 +97,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
 
       // right hand
-      KC_NO,    KC_F6,    KC_F7,    KC_F8,    KC_F9,    KC_F10,   KC_F11,
+      _______,    KC_F6,    KC_F7,    KC_F8,    KC_F9,    KC_F10,   KC_F11,
       KC_F12,   KC_HASH,  KC_GRV,   KC_LBRC,  KC_RBRC,  KC_TILD,  _______,
                 KC_LEFT,  KC_DOWN,  KC_UP,    KC_RIGHT, KC_DLR,   _______,
       _______,  KC_NO,    KC_MINUS, KC_AMPR,  KC_NO,    KC_NO,    _______,
@@ -174,33 +160,34 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 };
 
 uint32_t layer_state_set_user(uint32_t state) {
-    uint8_t layer = biton32(state);
+   uint8_t layer = biton32(state);
 
-    ergodox_board_led_off();
-    ergodox_right_led_1_off();
-    ergodox_right_led_2_off();
-    ergodox_right_led_3_off();
+   ergodox_board_led_off();
+   ergodox_right_led_1_off();
+   ergodox_right_led_2_off();
+   ergodox_right_led_3_off();
 
-    switch(layer) {
-      case BASE:
-        break;
-      case SIMU:
-      case GAME:
-        ergodox_right_led_1_on();
-        break;
-      case PUNC:
-        ergodox_right_led_2_on();
-        break;
-      case NUMB:
-        ergodox_right_led_1_on();
-        ergodox_right_led_2_on();
-        break;
-      case CNFG:
-        ergodox_right_led_1_on();
-        ergodox_right_led_2_on();
-        ergodox_right_led_3_on();
-        break;
-    }
+   switch(layer) {
+     case BASE:
+       break;
+     case SIMU:
+     case GAME:
+       ergodox_right_led_1_on();
+       break;
+     case PUNC:
+       ergodox_right_led_2_on();
+       break;
+     case NUMB:
+       ergodox_right_led_1_on();
+       ergodox_right_led_2_on();
+       break;
+     case CNFG:
+       ergodox_right_led_1_on();
+       ergodox_right_led_2_on();
+       ergodox_right_led_3_on();
+       break;
+   }
 
-    return state;
+   return state;
 };
+

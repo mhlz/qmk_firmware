@@ -5,3 +5,4 @@ ifeq ($(strip $(INCLUDE_DEFAULT_COMBOS)), yes)
     OPT_DEFS += -DINCLUDE_DEFAULT_COMBOS
 endif
 
+CONSOLE_ENABLE=no

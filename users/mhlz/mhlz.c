@@ -45,9 +45,14 @@ void process_combo_event(uint8_t combo_index, bool pressed) {
             switch (my_combo_layer_state) {
                 case 1:
 #ifdef CONSOLE_ENABLE
-                    uprintf("layer state is 1, oneshot activated\n");
+                    uprintf("layer state is 1\n");
 #endif
-                    set_oneshot_layer(PUNC, ONESHOT_START);
+                    if (timer_read() - my_combo_press_start < 300) {
+#ifdef CONSOLE_ENABLE
+                        uprintf("timer did not run out, activating one shot\n");
+#endif
+                        set_oneshot_layer(PUNC, ONESHOT_START);
+                    }
                     break;
             }
 #ifdef CONSOLE_ENABLE
@@ -66,9 +71,9 @@ bool process_record_user (uint16_t keycode, keyrecord_t *record) {
         clear_oneshot_layer_state(ONESHOT_PRESSED);
     }
 
-    if (my_combo_layer_state == 1 && timer_read() - my_combo_press_start > 100) {
+    if (my_combo_layer_state == 1 && record->event.pressed) {
 #ifdef CONSOLE_ENABLE
-        uprintf("timer ran out, layer state now 2\n");
+        uprintf("button pressed while in state 1, now in state 2\n");
 #endif
         my_combo_layer_state = 2;
     }

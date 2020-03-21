@@ -44,7 +44,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
                                               _______,  _______,
                                                                   _______,
-                                              _______,  KC_ENTER, _______,
+                                              _______,  _______, _______,
 
 
 
@@ -57,7 +57,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
                                               _______,  _______,
                                               _______,
-                                              _______,  _______,  KC_BSPC
+                                              _______,  _______,  _______
   ),
   [SIMU] = LAYOUT_ergodox(
       // left hand
@@ -167,12 +167,19 @@ uint32_t layer_state_set_user(uint32_t state) {
    ergodox_right_led_2_off();
    ergodox_right_led_3_off();
 
+#ifdef COMBO_ENABLE
+   combo_enable();
+#endif
+
    switch(layer) {
      case BASE:
        break;
      case SIMU:
      case GAME:
        ergodox_right_led_1_on();
+#ifdef COMBO_ENABLE
+       combo_disable();
+#endif
        break;
      case PUNC:
        ergodox_right_led_2_on();

@@ -19,7 +19,7 @@ combo_t key_combos[COMBO_COUNT] = {
     [FD_LAYER] = COMBO_ACTION(fd_combo),
 };
 
-static int my_combo_layer_state = 0;
+static uint8_t my_combo_layer_state = 0;
 static uint16_t my_combo_press_start = 0;
 
 void process_combo_event(uint8_t combo_index, bool pressed) {

@@ -35,11 +35,7 @@ ifeq ($(strip $(AUDIO_ENABLE)), yes)
     MUSIC_ENABLE := 1
     SRC += $(QUANTUM_DIR)/process_keycode/process_audio.c
     SRC += $(QUANTUM_DIR)/process_keycode/process_clicky.c
-    ifeq ($(PLATFORM),AVR)
-        SRC += $(QUANTUM_DIR)/audio/audio.c
-    else
-        SRC += $(QUANTUM_DIR)/audio/audio_arm.c
-    endif
+    SRC += $(QUANTUM_DIR)/audio/audio_$(PLATFORM_KEY).c
     SRC += $(QUANTUM_DIR)/audio/voices.c
     SRC += $(QUANTUM_DIR)/audio/luts.c
 endif
@@ -141,6 +137,10 @@ else
         SRC += $(PLATFORM_COMMON_DIR)/flash_stm32.c
         OPT_DEFS += -DEEPROM_EMU_STM32F072xB
         OPT_DEFS += -DSTM32_EEPROM_ENABLE
+      else ifneq ($(filter $(MCU_SERIES),STM32L0xx STM32L1xx),)
+        OPT_DEFS += -DEEPROM_DRIVER
+        COMMON_VPATH += $(DRIVER_PATH)/eeprom
+        SRC += eeprom_driver.c eeprom_stm32_L0_L1.c
       else
         # This will effectively work the same as "transient" if not supported by the chip
         SRC += $(PLATFORM_COMMON_DIR)/eeprom_teensy.c
@@ -159,7 +159,6 @@ ifeq ($(strip $(RGBLIGHT_ENABLE)), yes)
     SRC += $(QUANTUM_DIR)/color.c
     SRC += $(QUANTUM_DIR)/rgblight.c
     CIE1931_CURVE := yes
-    LED_BREATHING_TABLE := yes
     RGB_KEYCODES_ENABLE := yes
     ifeq ($(strip $(RGBLIGHT_CUSTOM_DRIVER)), yes)
         OPT_DEFS += -DRGBLIGHT_CUSTOM_DRIVER
@@ -304,17 +303,17 @@ ifeq ($(strip $(BACKLIGHT_ENABLE)), yes)
 
     COMMON_VPATH += $(QUANTUM_DIR)/backlight
     SRC += $(QUANTUM_DIR)/backlight/backlight.c
+    SRC += $(QUANTUM_DIR)/process_keycode/process_backlight.c
     OPT_DEFS += -DBACKLIGHT_ENABLE
 
     ifeq ($(strip $(BACKLIGHT_DRIVER)), custom)
         OPT_DEFS += -DBACKLIGHT_CUSTOM_DRIVER
-    else ifeq ($(strip $(BACKLIGHT_DRIVER)), software)
-        SRC += $(QUANTUM_DIR)/backlight/backlight_soft.c
     else
-        ifeq ($(PLATFORM),AVR)
-            SRC += $(QUANTUM_DIR)/backlight/backlight_avr.c
+        SRC += $(QUANTUM_DIR)/backlight/backlight_driver_common.c
+        ifeq ($(strip $(BACKLIGHT_DRIVER)), pwm)
+            SRC += $(QUANTUM_DIR)/backlight/backlight_$(PLATFORM_KEY).c
         else
-            SRC += $(QUANTUM_DIR)/backlight/backlight_arm.c
+            SRC += $(QUANTUM_DIR)/backlight/backlight_$(strip $(BACKLIGHT_DRIVER)).c
         endif
     endif
 endif
@@ -347,11 +346,6 @@ endif
 
 ifeq ($(strip $(CIE1931_CURVE)), yes)
     OPT_DEFS += -DUSE_CIE1931_CURVE
-    LED_TABLES := yes
-endif
-
-ifeq ($(strip $(LED_BREATHING_TABLE)), yes)
-    OPT_DEFS += -DUSE_LED_BREATHING_TABLE
     LED_TABLES := yes
 endif
 

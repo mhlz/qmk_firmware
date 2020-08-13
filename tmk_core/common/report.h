@@ -21,6 +21,8 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #include <stdbool.h>
 #include "keycode.h"
 
+// clang-format off
+
 /* HID report IDs */
 enum hid_report_ids {
     REPORT_ID_KEYBOARD = 1,
@@ -38,8 +40,6 @@ enum mouse_buttons {
     MOUSE_BTN4 = (1 << 3),
     MOUSE_BTN5 = (1 << 4)
 };
-
-// clang-format off
 
 /* Consumer Page (0x0C)
  *
@@ -69,6 +69,8 @@ enum consumer_usages {
     AL_CALCULATOR          = 0x192,
     AL_LOCAL_BROWSER       = 0x194,
     AL_LOCK                = 0x19E,
+    AL_CONTROL_PANEL       = 0x19F,
+    AL_ASSISTANT           = 0x1CB,
     // 15.16 Generic GUI Application Controls
     AC_MINIMIZE            = 0x206,
     AC_SEARCH              = 0x221,

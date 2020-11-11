@@ -22,7 +22,7 @@ combo_t key_combos[COMBO_COUNT] = {
 static uint8_t my_combo_layer_state = 0;
 static uint16_t my_combo_press_start = 0;
 
-void process_combo_event(uint8_t combo_index, bool pressed) {
+void process_combo_event(uint16_t combo_index, bool pressed) {
     switch (combo_index) {
         case FD_LAYER:
         case JK_LAYER:
